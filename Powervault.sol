@@ -145,6 +145,9 @@ contract Powervault is Pausable {
     }
 
     function pendingWant(address _user) external view virtual returns (uint) {
+        if (sharesTotal == 0) {
+            return 0;
+        }
         return (userInfo[_user].shares * wantLockedTotal) / sharesTotal;
     }
 
